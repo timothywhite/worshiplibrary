@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8"> 
+	<title>Worship Library</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<meta name="description" content=""> 
+	<meta name="author" content="">
+	
+	<link rel="stylesheet" href="/static/worshiplibrary/assets/css/style.css" />
+	<link href="/static/worshiplibrary/assets/js/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="/static/worshiplibrary/assets/js/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"> 
+	
+</head> 
+<body> 
+		<div class="navbar navbar-fixed-top navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="brand" href="#">Worship Library</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li class="active">
+								<a id="app-song-tab" href="#song-wrap" data-toggle="tab">Songs</a>
+							</li>
+							<li class="">
+								<a id="app-arrangement-tab" href="#arrangement-wrap" data-toggle="tab">Arrangements</a>
+							</li>
+							<li class="">
+								<a id="app-setlist-tab" href="#setlist-wrap" data-toggle="tab">Set Lists</a>
+							</li>
+							<li class="">
+								<a href="/api" target="_blank">Api</a>
+							</li>
+							<li class="">
+								<a href="/logout" >Logout</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="container-fluid" id="main-wrap">
+		<div class="tab-content">
+			<div id="song-wrap" class="tab-pane active container-fluid"> 
+				<div class="row-fluid"> 
+					<div id="song-sidebar" class="span3 sidebar"> 
+					<div class="well"></div>
+					</div><!--/span--> 
+						<div class="span9">
+							<div class="row-fluid">
+								<ul class='nav nav-tabs' id='song-tabs'></ul>
+							</div>
+							<div id="song-content" class="tab-content">
+							</div>
+						</div>
+				</div><!--/row--> 
+			</div><!--/.fluid-container--> 
+			<div id="arrangement-wrap" class="tab-pane container-fluid"> 
+				<div class="row-fluid"> 
+					<div id="arrangement-sidebar" class="span3 sidebar"> 
+						<div class="well" > 
+						</div><!--/.well --> 
+					</div><!--/span--> 
+					<div class="span9" id='main'> 
+						<div class="row-fluid" >
+								<ul class='nav nav-tabs' id='arrangement-tabs'></ul>
+						</div>
+						<div class="tab-content" id="arrangement-content">
+						</div>
+					</div><!--/span--> 
+				</div><!--/row--> 
+			</div><!--/.fluid-container--> 
+			<div id="setlist-wrap" class="tab-pane container-fluid"> 
+				<div class="row-fluid"> 
+					<div class="span3 sidebar"> 
+						<div id="setlist-sidebar" class="well" > 
+						</div><!--/.well --> 
+					</div><!--/span--> 
+					<div class="span9" id='main'> 
+						<div class="row-fluid"  id="setlist-tabs">
+						</div>
+						<div class="tab-content" id="setlist-content">
+						</div>
+					</div><!--/span--> 
+				</div><!--/row--> 
+			</div><!--/.fluid-container--> 
+		</div>
+		<hr> 
+		<footer> 
+		<p>&copy; Tim White 2012 </p>
+		</footer> 
+	</div>
+	<!--scripts-->
+	
+	<!--libraries-->
+	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+	
+	<script type='text/javascript' src='/static/worshiplibrary/assets/js/underscore/underscore-min.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/assets/js/backbone/backbone-min.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/assets/js/backbone/backbone.marionette.min.js'></script>
+
+	<script type="text/javascript" src="/static/worshiplibrary/assets/js/bootstrap/js/bootstrap.min.js"></script>
+	<!--end libraries --> 
+	
+	<!--templates-->
+	<script type='text/javascript' src='/static/worshiplibrary/assets/js/handlebars/handlebars.runtime.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/songsidebar.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/songsearchentry.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/verselayout.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/verse.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/versechord.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/editverse.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/editversechord.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/song.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/songauthor.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/songauthorlayout.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/songarrangement.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/songarrangementlayout.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/tab.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/arrangement.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/arrangementsonglayout.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/arrangementsong.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/arrangementsongverse.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/arrangementverselayout.handlebars.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/templates/arrangementverse.handlebars.js'></script>
+	<!--end templates-->
+	
+	<!--application-->
+	<script type='text/javascript' src='/static/worshiplibrary/src/application.js'></script>
+	
+	<!--modules-->
+	<script type='text/javascript' src='/static/worshiplibrary/src/modules/extensions.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/src/modules/tabs.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/src/modules/sidebar.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/src/modules/song.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/src/modules/verse.js'></script>
+	<script type='text/javascript' src='/static/worshiplibrary/src/modules/arrangement.js'></script>
+	
+	
+	
+</body>
+</html>
