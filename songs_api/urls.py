@@ -25,9 +25,6 @@ urlpatterns = patterns('',
 	url(r'^arrangement/verse/(?P<pk>\d+)$', ArrangementVerseDetail.as_view(), name='arrangementverse-detail'),
 	url(r'^arrangement/verse/$', ArrangementVerseList.as_view(), name='arrangementverse-list'),
 	
-	url(r'^song/arrangement/(?P<pk>\d+)$', SongArrangementDetail.as_view(), name='songarrangement-detail'),
-	url(r'^song/arrangement/$', SongArrangementList.as_view(), name='songarrangement-list'),
-	
 	url(r'^setlist/(?P<pk>\d+)$', SetListDetail.as_view(), name='setlist-detail'),
 	url(r'^setlist/$', SetListList.as_view(), name='setlist-list'),
 	

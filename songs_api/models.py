@@ -7,6 +7,11 @@ class Song(models.Model):
 	authors = models.ManyToManyField('Author', through='SongAuthor')
 	copyright = models.TextField(blank=True)
 	display_ccli = models.BooleanField(default=True)
+	
+	@property
+	def song_arrangements(self):
+		return Arrangement.objects.filter(verses__song = self).distinct()
+		
 	def __unicode__(self):
 		return self.name
 	
@@ -31,16 +36,15 @@ class SongAuthor(models.Model):
 	
 	def __unicode__(self):
 		return self.author.name
-		
-class SongArrangement(models.Model):
-	song = models.ForeignKey('Song',related_name='song_arrangements')
-	arrangement = models.ForeignKey('Arrangement',related_name='arrangement_songs')
 	
 class Arrangement(models.Model):
 	notes = models.CharField(max_length=255)
 	description = models.CharField(max_length=255)
 	verses = models.ManyToManyField('Verse', through='ArrangementVerse')
-	songs = models.ManyToManyField('Song',through='SongArrangement', related_name='arrangements')
+	
+	@property
+	def arrangement_songs(self):
+		return Song.objects.filter(verses__arrangement_verses__arrangement = self).distinct()
 	
 	@property
 	def last_setlist_date(self):
@@ -59,7 +63,7 @@ class ArrangementVerse(models.Model):
 	transposition = models.IntegerField(default=0)
 	order = models.IntegerField()
 	arrangement = models.ForeignKey('Arrangement',related_name='arrangement_verses')
-	verse  = models.ForeignKey('Verse')
+	verse  = models.ForeignKey('Verse', related_name='arrangement_verses')
 	
 	def __unicode__(self):
 		return self.description

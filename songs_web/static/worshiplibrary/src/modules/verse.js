@@ -59,15 +59,15 @@ app.module("Verse", function(Verse,app,Backbone,Marionette,$,_){
 		getTemplate:function(){
 			if(this.model.get('chordmode')){
 				if (this.model.get('editmode')){
-					return Handlebars.templates.editversechord;
+					return app.Template.get('editversechord');
 				}else{
-					return Handlebars.templates.versechord;
+					return app.Template.get('versechord');
 				}
 			}else{
 				if (this.model.get('editmode')){
-				return Handlebars.templates.editverse;
+				return app.Template.get('editverse');
 				}else{
-					return Handlebars.templates.verse;
+					return app.Template.get('verse');
 				}
 			}
 			
@@ -101,7 +101,7 @@ app.module("Verse", function(Verse,app,Backbone,Marionette,$,_){
 		}
 	});
 	Verse.Layout = Backbone.Marionette.Layout.extend({
-		template: Handlebars.templates.verselayout,
+		template: app.Template.get('verselayout'),
 		events:{
 			'click .button-edit':'editModeToggle',
 			'click .button-chords':'chordModeOn',

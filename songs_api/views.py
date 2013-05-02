@@ -22,7 +22,6 @@ def api_root(request,format=None):
 		'songauthor':reverse('songauthor-list',request=request),
 		'arrangement':reverse('arrangement-list',request=request),
 		'arrangementverse':reverse('arrangementverse-list',request=request),
-		'songarrangement':reverse('songarrangement-list',request=request),
 		'setlist':reverse('setlist-list',request=request),
 		'setlistarrangement':reverse('setlistarrangement-list',request=request),
 	})
@@ -122,20 +121,6 @@ class ArrangementVerseList(generics.ListCreateAPIView):
 	"""
 	model = ArrangementVerse
 	serializer_class = ArrangementVerseSerializer
-	
-class SongArrangementDetail(generics.RetrieveUpdateDestroyAPIView):
-	"""
-	API endpoint that represents a song arrangement.
-	"""
-	model = SongArrangement
-	serializer_class = SongArrangementSerializer
-	
-class SongArrangementList(generics.ListCreateAPIView):
-	"""
-	API endpoint that represents a list of song arrangement.
-	"""
-	model = SongArrangement
-	serializer_class = SongArrangementSerializer
 		
 class SetListDetail(generics.RetrieveUpdateDestroyAPIView):
 	"""

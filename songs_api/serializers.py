@@ -29,10 +29,11 @@ class ArrangementVerseRelatedField(serializers.RelatedField):
 		data['verse'] = value.verse.id
 		data['song_name'] = value.verse.song.name
 		return data
-class SongArrangementSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = SongArrangement
-		fields = ('id','song','arrangement')
+	
+# class SongArrangementSerializer(serializers.ModelSerializer):
+	# class Meta:
+		# model = SongArrangement
+		# fields = ('id','song','arrangement')
 		
 class SongArrangementRelatedField(serializers.RelatedField):
 	def to_native(self,value):
@@ -43,22 +44,6 @@ class SongArrangementRelatedField(serializers.RelatedField):
 			'name':value.song.name,
 			'verses': VerseSerializer(value.song.verses.all(),many=True).data
 		}
-		
-class ArrangementSerializer(serializers.ModelSerializer):
-	setlists = SetListRelatedField(many=True,read_only=True)
-	last_setlist_date = serializers.DateField(source='last_setlist_date', read_only=True)
-	arrangement_verses = ArrangementVerseRelatedField(many=True, read_only=True)
-	arrangement_songs = SongArrangementRelatedField(many=True, read_only=True)
-	class Meta:
-		model = Arrangement
-		fields = ('id','notes','description','last_setlist_date','arrangement_verses','arrangement_songs','setlists')
-		read_only_fields = ('verses',)
-		
-class SetListSerializer(serializers.ModelSerializer):
-	arrangements = ArrangementSerializer(many=True,read_only=True)
-	class Meta:
-		model = SetList
-		fields = ('description','date','arrangements')
 		
 class SetListArrangementSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -89,10 +74,10 @@ class SongArrangementRelatedField(serializers.RelatedField):
 	def to_native(self, value):
 		return {
 			'id':value.id,
-			'arrangement':value.arrangement.id,
-			'notes': value.arrangement.notes,
-			'description':value.arrangement.description,
-			'last_setlist_date':value.arrangement.last_setlist_date
+			'arrangement':value.id,
+			'notes': value.notes,
+			'description':value.description,
+			'last_setlist_date':value.last_setlist_date
 		}
 		
 class SongSerializer(serializers.ModelSerializer):
@@ -103,3 +88,20 @@ class SongSerializer(serializers.ModelSerializer):
 		model = Song
 		fields = ('id','name','copyright','display_ccli','song_authors','verses','song_arrangements')
 		
+		
+class ArrangementSerializer(serializers.ModelSerializer):
+	setlists = SetListRelatedField(many=True,read_only=True)
+	last_setlist_date = serializers.DateField(source='last_setlist_date', read_only=True)
+	arrangement_verses = ArrangementVerseRelatedField(many=True, read_only=True)
+	arrangement_songs = SongSerializer(many=True, read_only=True)
+	class Meta:
+		model = Arrangement
+		fields = ('id','notes','description','last_setlist_date','arrangement_verses','arrangement_songs','setlists')
+		read_only_fields = ('verses',)
+		
+		
+class SetListSerializer(serializers.ModelSerializer):
+	arrangements = ArrangementSerializer(many=True,read_only=True)
+	class Meta:
+		model = SetList
+		fields = ('description','date','arrangements')

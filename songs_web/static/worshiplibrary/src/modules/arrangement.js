@@ -1,31 +1,9 @@
 
 app.module("Arrangement", function(Arrangement,app,Backbone,Marionette,$,_){
-
-	Arrangement.SongModel = Backbone.Model.extend({
-		urlRoot: '/api/song/arrangement/',
-		defaults:{
-			'id':null,
-			'song':null,
-			'arrangement':null,
-			'name':'',
-			'verses':[]
-		},
-		initialize:function(){
-			this.set('verses', new app.Verse.Collection(this.get('verses')));
-			this.on('change:verses', function(model, authors) {
-				if(!(model.get('verses') instanceof app.Verse.Collection)){
-					model.set('verses', new app.Verse.Collection(model.get('verses')));
-				}
-			});
-		}
-	});
-	Arrangement.SongCollection = Backbone.Collection.extend({
-		url:'/api/song/arrangement/',
-		model:Arrangement.SongModel
-	});
+	
 	Arrangement.SongVerseView = Backbone.Marionette.ItemView.extend({
 		tagName:'tr',
-		template:Handlebars.templates.arrangementsongverse,
+		template:app.Template.get('arrangementsongverse'),
 		events:{
 			'click .view-verse':'showPreview',
 			'click .add-verse':'addVerse'
@@ -42,7 +20,7 @@ app.module("Arrangement", function(Arrangement,app,Backbone,Marionette,$,_){
 		}
 	});
 	Arrangement.SongView = Backbone.Marionette.CompositeView.extend({
-		template:Handlebars.templates.arrangementsong,
+		template:app.Template.get('arrangementsong'),
 		tagName:'div',
 		className:'accordion-group',
 		itemViewContainer:'tbody',
@@ -67,18 +45,17 @@ app.module("Arrangement", function(Arrangement,app,Backbone,Marionette,$,_){
 		}
 	});
 	Arrangement.SongCompositeView = Backbone.Marionette.CompositeView.extend({
-		template: Handlebars.templates.arrangementsonglayout,
+		template: app.Template.get('arrangementsonglayout'),
 		itemView:Arrangement.SongView,
 		itemViewContainer:'.arrangement-songs',
 		events:{
 			'click button.add-song':'launchAddSongModal'
 		},
 		initialize:function(){
-			this.on('itemview:song:remove',this.removeSong);
+			
 		},
 		removeSong:function(itemview){
 			this.collection.remove({id:itemview.model.get('id')});
-			app.vent.trigger('destroy',itemview.model);
 			this.render();
 		},
 		launchAddSongModal:function(){
@@ -112,24 +89,16 @@ app.module("Arrangement", function(Arrangement,app,Backbone,Marionette,$,_){
 					},
 					updater: function (name) {
 						data = _.find(responseData, function(song){ return song['name'] == name; });
-						song = new Arrangement.SongModel({
-							song:data['id'],
-							arrangement:view.model.get('id'),
-							name:data['name'],
-							verses:data['verses'].toJSON(),
+						song = new app.Song.Model({
+							id:data.id,
+							name:data.name,
+							verses:data.verses.toJSON()
 						});
-						song.save(null,{
-							success:function(model,response,options){
-								view.collection.add(song);
-								view.$el.find('.alert').fadeIn(400, function(){
-									setTimeout(function(){
-										view.$el.find('.alert').fadeOut();
-									}, 500);
-								});
-							},
-							error:function(model,response,options){
-								app.vent.trigger('save:error',response.status);
-							}
+						view.collection.add(song);
+							view.$el.find('.alert').fadeIn(400, function(){
+							setTimeout(function(){
+								view.$el.find('.alert').fadeOut();
+							}, 500);
 						});
 						return "";
 					}
@@ -155,14 +124,14 @@ app.module("Arrangement", function(Arrangement,app,Backbone,Marionette,$,_){
 		model:Arrangement.VerseModel
 	});
 	Arrangement.VerseView = Backbone.Marionette.ItemView.extend({
-		template:Handlebars.templates.arrangementverse,
+		template:app.Template.get('arrangementverse'),
 		tagName:'tr',
 		events:{
-			'click .button-remove':'remove',
+			'click .button-remove':'removeVerse',
 			'click .button-up':'moveUp',
 			'click .button-down':'moveDown'
 		},
-		remove:function(){
+		removeVerse:function(){
 			this.trigger('verse:remove');
 		},
 		moveUp:function(){
@@ -173,11 +142,11 @@ app.module("Arrangement", function(Arrangement,app,Backbone,Marionette,$,_){
 		}
 	});
 	Arrangement.VerseCompositeView = Backbone.Marionette.CompositeView.extend({
-		template:Handlebars.templates.arrangementverselayout,
+		template:app.Template.get('arrangementverselayout'),
 		itemViewContainer:'tbody',
 		itemView:Arrangement.VerseView,
 		initialize:function(){
-			this.on('itemview:verse:remove',this.remove);
+			this.on('itemview:verse:remove',this.removeVerse);
 			this.on('itemview:verse:up',this.moveUp);
 			this.on('itemview:verse:down',this.moveDown);
 			this.collection.comparator = function(model) {
@@ -187,9 +156,18 @@ app.module("Arrangement", function(Arrangement,app,Backbone,Marionette,$,_){
 		onBeforeRender:function(){
 			this.collection.sort();
 		},
-		remove:function(itemview){
+		removeVerse:function(itemview){
 			this.collection.remove({id:itemview.model.get('id')});
 			app.vent.trigger('destroy',itemview.model);
+			this.collection.forEach(function(verse,index){
+				verse.set('order',index);
+				app.vent.trigger('save',verse);
+			});
+			this.render();
+		},
+		removeVerseByModel:function(model){
+			this.collection.remove({id:model.get('id')});
+			app.vent.trigger('destroy',model);
 			this.collection.forEach(function(verse,index){
 				verse.set('order',index);
 				app.vent.trigger('save',verse);
@@ -244,16 +222,16 @@ app.module("Arrangement", function(Arrangement,app,Backbone,Marionette,$,_){
 					model.set('arrangement_verses', new Arrangement.VerseCollection(this.get('arrangement_verses')));
 				}
 			});
-			this.set('arrangement_songs', new Arrangement.SongCollection(this.get('arrangement_songs')));
+			this.set('arrangement_songs', new app.Song.Collection(this.get('arrangement_songs')));
 			this.on('change:arrangement_songs', function(model, authors) {
-				if(!(model.get('arrangement_songs') instanceof Arrangement.SongCollection)){
-					model.set('arrangement_songs', new Arrangement.SongCollection(this.get('arrangement_songs')));
+				if(!(model.get('arrangement_songs') instanceof app.Song.Collection)){
+					model.set('arrangement_songs', new app.Song.Collection(this.get('arrangement_songs')));
 				}
 			});
 		}
 	});
 	Arrangement.Layout = Backbone.Marionette.Layout.extend({
-		template: Handlebars.templates.arrangement,
+		template: app.Template.get('arrangement'),
 		events:{
 			'click .button-rename-arrangement':'showRenameModal',
 			'click button.rename-arrangement':'renameArrangement',
@@ -291,6 +269,13 @@ app.module("Arrangement", function(Arrangement,app,Backbone,Marionette,$,_){
 				model: this.model
 			});
 			(function(view){
+				songsLayout.on('itemview:song:remove',function(songview){
+					song = songview.model;
+					versesLayout.collection.where({song_name:song.get('name')}).forEach(function(model){
+						versesLayout.removeVerseByModel(model);
+					});
+					songsLayout.removeSong(songview);
+				});
 				songsLayout.on('itemview:itemview:verse:add',function(songview,verseview){
 					song = songview.model;
 					verse = verseview.model;

@@ -35,7 +35,7 @@ app.module("Song", function(Song,app,Backbone,Marionette,$,_){
 	});
 	
 	Song.Layout = Backbone.Marionette.Layout.extend({
-		template: Handlebars.templates.song,
+		template: app.Template.get('song'),
 		onBeforeClose: function(){
 			//TODO: add save code here.
 		},
@@ -131,7 +131,7 @@ app.module("SongArrangement", function(SongArrangement,app,Backbone,Marionette,$
 	
 	SongArrangement.View = Backbone.Marionette.ItemView.extend({
 		tagName: 'tr',
-		template: Handlebars.templates.songarrangement,
+		template: app.Template.get('songarrangement'),
 		events:{
 			'click':'showArrangement'
 		},
@@ -149,7 +149,7 @@ app.module("SongArrangement", function(SongArrangement,app,Backbone,Marionette,$
 	});
 	
 	SongArrangement.CompositeView = Backbone.Marionette.CompositeView.extend({
-		template:Handlebars.templates.songarrangementlayout,
+		template:app.Template.get('songarrangementlayout'),
 		itemView:SongArrangement.View,
 		itemViewContainer:'tbody'
 	});
@@ -186,7 +186,7 @@ app.module("SongAuthor", function(SongAuthor,app,Backbone,Marionette,$,_){
 	});
 	SongAuthor.View = Backbone.Marionette.ItemView.extend({
 		tagName:'tr',
-		template: Handlebars.templates.songauthor,
+		template: app.Template.get('songauthor'),
 		events:{
 			'click .button-down':'moveDown',
 			'click .button-up':'moveUp',
@@ -203,7 +203,7 @@ app.module("SongAuthor", function(SongAuthor,app,Backbone,Marionette,$,_){
 		}
 	});
 	SongAuthor.CompositeView = Backbone.Marionette.CompositeView.extend({
-		template:Handlebars.templates.songauthorlayout,
+		template: app.Template.get('songauthorlayout'),
 		itemView:SongAuthor.View,
 		itemViewContainer:'tbody',
 		events:{

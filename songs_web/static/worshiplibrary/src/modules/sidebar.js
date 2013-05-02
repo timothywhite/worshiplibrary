@@ -2,12 +2,12 @@ app.module("Sidebar", function(Sidebar,app,Backbone,Marionette,$,_){
 	Sidebar.SongView = Backbone.Marionette.ItemView.extend({
 		tagName:'li',
 		className:'song-search-entry',
-		template: Handlebars.templates.songsearchentry
+		template: app.Template.get('songsearchentry')
 	});
 	Sidebar.SongCompositeView = Backbone.Marionette.CompositeView.extend({
 		tagName: 'div',
 		className:'well',
-		template: Handlebars.templates.songsidebar,
+		template: app.Template.get('songsidebar'),
 		itemView: Sidebar.SongView,
 		itemViewContainer: 'ul',
 		events:{

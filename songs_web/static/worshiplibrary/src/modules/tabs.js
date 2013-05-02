@@ -10,7 +10,7 @@ app.module('Tab', function(Tab,app,Backbone,Marionette,$,_){
 		}
 	});
 	Tab.View = Backbone.Marionette.ItemView.extend({
-		template: Handlebars.templates.tab,
+		template: app.Template.get('tab'),
 		tagName:'li',
 		attributes: function(){
 			return {id:this.model.get('type')+'-tab-'+this.model.get('id')};
