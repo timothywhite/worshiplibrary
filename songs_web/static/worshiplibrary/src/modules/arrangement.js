@@ -33,12 +33,7 @@ app.module("Arrangement", function(Arrangement,app,Backbone,Marionette,$,_){
 			this.trigger('song:remove');
 		},
 		viewSong:function(){
-			song = new app.Song.Model({id:this.model.get('song')});
-			song.fetch({
-				success:function(model, response, options){
-					app.vent.trigger('tab:show',model);
-				}
-			})
+			app.vent.trigger('tab:show',this.model);
 		},
 		initialize:function(){
 			this.collection = this.model.get('verses');
