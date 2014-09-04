@@ -101,6 +101,12 @@ class ArrangementDetail(generics.RetrieveUpdateDestroyAPIView):
 	model = Arrangement
 	serializer_class = ArrangementSerializer
 	
+	def get(self, request, format=None, *args, **kwargs):
+		if format == 'html':
+			pass
+		else:
+			return super(ArrangementDetail,self).get(request, *args, **kwargs)
+	
 class ArrangementList(generics.ListCreateAPIView):
 	"""
 	API endpoint that represents a list of arrangement.

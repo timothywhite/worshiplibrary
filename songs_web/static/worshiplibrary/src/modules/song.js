@@ -99,7 +99,8 @@ app.module("Song", function(Song,app,Backbone,Marionette,$,_){
 				song_id: this.model.get('id')
 			});
 			this.verses.show(versesLayout);
-				authorsCompositeView = new app.SongAuthor.CompositeView({
+			
+			authorsCompositeView = new app.SongAuthor.CompositeView({
 				collection:this.model.get('song_authors'),
 				song_id: this.model.get('id')
 			});

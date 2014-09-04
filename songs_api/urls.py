@@ -33,7 +33,7 @@ urlpatterns = patterns('',
 )
 
 # Format suffixes
-urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'api'])
+urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'html'])
 
 # Default login/logout views
 urlpatterns += patterns('',
