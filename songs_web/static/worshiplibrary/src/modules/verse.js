@@ -1,4 +1,15 @@
-define(['app', 'module/extensions', 'module/template'], function(app){
+define([
+	'app',
+	//Templates
+	'hbs!template/editversechord',
+	'hbs!template/versechord',
+	'hbs!template/editverse',
+	'hbs!template/verse',
+	'hbs!template/verselayout',
+	//Modules
+	'module/extensions'
+	],
+function(app, tplEditVerseChord, tplVerseChord, tplEditVerse, tplVerse, tplVerseLayout){
 	app.module("Verse", function(Verse,app,Backbone,Marionette,$,_){
 		Verse.Model = Backbone.Model.extend({
 			urlRoot:'/api/verse/',
@@ -60,15 +71,15 @@ define(['app', 'module/extensions', 'module/template'], function(app){
 			getTemplate:function(){
 				if(this.model.get('chordmode')){
 					if (this.model.get('editmode')){
-						return app.Template.get('editversechord');
+						return tplEditVerseChord;
 					}else{
-						return app.Template.get('versechord');
+						return tplVerseChord;
 					}
 				}else{
 					if (this.model.get('editmode')){
-					return app.Template.get('editverse');
+					return tplEditVerse;
 					}else{
-						return app.Template.get('verse');
+						return tplVerse;
 					}
 				}
 
@@ -102,7 +113,7 @@ define(['app', 'module/extensions', 'module/template'], function(app){
 			}
 		});
 		Verse.Layout = Backbone.Marionette.LayoutView.extend({
-			template: app.Template.get('verselayout'),
+			template: tplVerseLayout,
 			events:{
 				'click .button-edit':'editModeToggle',
 				'click .button-chords':'chordModeOn',

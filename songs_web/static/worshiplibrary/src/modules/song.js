@@ -1,4 +1,15 @@
-﻿define(['app', 'module/extensions', 'module/template'], function(app){
+﻿define([
+	'app',
+	//Templates
+	'hbs!template/song',
+	'hbs!template/songarrangement',
+	'hbs!template/songarrangementlayout',
+	'hbs!template/songauthor',
+	'hbs!template/songauthorlayout',
+	//Modules
+	'module/extensions'
+	],
+function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAuthorLayout){
 	app.module("Song", function(Song,app,Backbone,Marionette,$,_){
 		Song.Model = Backbone.Model.extend({
 			urlRoot:'/api/song/',
@@ -35,7 +46,7 @@
 		});
 
 		Song.Layout = Backbone.Marionette.LayoutView.extend({
-			template: app.Template.get('song'),
+			template: tplSong,
 			onBeforeClose: function(){
 				//TODO: add save code here.
 			},
@@ -132,7 +143,7 @@
 
 		SongArrangement.View = Backbone.Marionette.ItemView.extend({
 			tagName: 'tr',
-			template: app.Template.get('songarrangement'),
+			template: tplSongArr,
 			events:{
 				'click':'showArrangement'
 			},
@@ -150,7 +161,7 @@
 		});
 
 		SongArrangement.CompositeView = Backbone.Marionette.CompositeView.extend({
-			template:app.Template.get('songarrangementlayout'),
+			template: tplSongArrLayout,
 			childView:SongArrangement.View,
 			childViewContainer:'tbody'
 		});
@@ -187,7 +198,7 @@
 		});
 		SongAuthor.View = Backbone.Marionette.ItemView.extend({
 			tagName:'tr',
-			template: app.Template.get('songauthor'),
+			template: tplSongAuthor,
 			events:{
 				'click .button-down':'moveDown',
 				'click .button-up':'moveUp',
@@ -204,7 +215,7 @@
 			}
 		});
 		SongAuthor.CompositeView = Backbone.Marionette.CompositeView.extend({
-			template: app.Template.get('songauthorlayout'),
+			template: tplSongAuthorLayout,
 			childView:SongAuthor.View,
 			childViewContainer:'tbody',
 			events:{

@@ -1,10 +1,22 @@
-define(['app', 'module/extensions', 'module/template'], function(app){
+define([
+	'app',
+	//Templates
+	'hbs!template/arrangementsongverse',
+	'hbs!template/arrangementsong',
+	'hbs!template/arrangementsonglayout',
+	'hbs!template/arrangementverse',
+	'hbs!template/arrangementverselayout',
+	'hbs!template/arrangement',
+	//Modules
+	'module/extensions'
+	],
+function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArrVerseLayout, tplArr){
 	app.module("Arrangement", function(Arrangement,app,Backbone,Marionette,$,_){
 
 		Arrangement.SongVerseView = Backbone.Marionette.ItemView.extend({
-			tagName:'tr',
-			template:app.Template.get('arrangementsongverse'),
-			events:{
+			tagName: 'tr',
+			template: tplArrSongVerse,
+			events: {
 				'click .view-verse':'showPreview',
 				'click .add-verse':'addVerse'
 			},
@@ -20,7 +32,7 @@ define(['app', 'module/extensions', 'module/template'], function(app){
 			}
 		});
 		Arrangement.SongView = Backbone.Marionette.CompositeView.extend({
-			template:app.Template.get('arrangementsong'),
+			template: tplArrSong,
 			tagName:'div',
 			className:'accordion-group',
 			childViewContainer:'tbody',
@@ -40,7 +52,7 @@ define(['app', 'module/extensions', 'module/template'], function(app){
 			}
 		});
 		Arrangement.SongCompositeView = Backbone.Marionette.CompositeView.extend({
-			template: app.Template.get('arrangementsonglayout'),
+			template: tplArrSongLayout,
 			childView:Arrangement.SongView,
 			childViewContainer:'.arrangement-songs',
 			events:{
@@ -119,7 +131,7 @@ define(['app', 'module/extensions', 'module/template'], function(app){
 			model:Arrangement.VerseModel
 		});
 		Arrangement.VerseView = Backbone.Marionette.ItemView.extend({
-			template:app.Template.get('arrangementverse'),
+			template: tplArrVerse,
 			tagName:'tr',
 			events:{
 				'click .button-remove':'removeVerse',
@@ -137,7 +149,7 @@ define(['app', 'module/extensions', 'module/template'], function(app){
 			}
 		});
 		Arrangement.VerseCompositeView = Backbone.Marionette.CompositeView.extend({
-			template:app.Template.get('arrangementverselayout'),
+			template: tplArrVerseLayout,
 			childViewContainer:'tbody',
 			childView:Arrangement.VerseView,
 			initialize:function(){
@@ -226,7 +238,7 @@ define(['app', 'module/extensions', 'module/template'], function(app){
 			}
 		});
 		Arrangement.Layout = Backbone.Marionette.LayoutView.extend({
-			template: app.Template.get('arrangement'),
+			template: tplArr,
 			events:{
 				'click .button-rename-arrangement':'showRenameModal',
 				'click button.rename-arrangement':'renameArrangement',

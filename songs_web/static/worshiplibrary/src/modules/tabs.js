@@ -1,4 +1,12 @@
-define(['app', 'module/song', 'module/arrangement'], function(app){
+define([
+	'app',
+	//Templates
+	'hbs!template/tab',
+	//Modules
+	'module/song',
+	'module/arrangement'
+],
+function(app, tplTab){
 	app.module('Tab', function(Tab,app,Backbone,Marionette,$,_){
 		//Module for handling tabs using the bootstrap tab component.
 		Tab.Model = Backbone.Model.extend({
@@ -11,7 +19,7 @@ define(['app', 'module/song', 'module/arrangement'], function(app){
 			}
 		});
 		Tab.View = Backbone.Marionette.ItemView.extend({
-			template: app.Template.get('tab'),
+			template: tplTab,
 			tagName:'li',
 			attributes: function(){
 				return {id:this.model.get('type')+'-tab-'+this.model.get('id')};

@@ -1,9 +1,11 @@
 require.config({
 	baseUrl: "/static/worshiplibrary/assets/js",
-		paths: {
-			'app': '../../src/application',
-			'module': '../../src/modules',
-		},
+	paths: {
+		'app': '../../src/application',
+		'module': '../../src/modules',
+		'text': 'text',
+		'template': '../../templates'
+	},
 	shim: {
 		'jquery': {
 			exports: '$'
@@ -21,13 +23,22 @@ require.config({
 		'handlebars': {
 			exports: 'Handlebars'
 		}
+	},
+	packages: [
+		{
+			name: 'hbs',
+			location: 'hbs',
+			main: 'hbs'
+		}
+	],
+	hbs: {
+		templateExtension: '.handlebars'
 	}
 });
 
 require([
 	'app',
 	'module/extensions',
-	'module/template',
 	'module/sidebar',
 	'module/tabs',
 	'module/song',

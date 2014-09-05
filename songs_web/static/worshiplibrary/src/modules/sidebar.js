@@ -1,14 +1,23 @@
-define(['app', 'module/song', 'module/arrangement'], function(app){
+define([
+	'app',
+	//Templates
+	'hbs!template/songsidebar',
+	'hbs!template/songsearchentry',
+	//Modules
+	'module/song',
+	'module/arrangement'
+],
+function(app, tplSongSidebar, tplSongSearchEntry){
 	app.module("Sidebar", function(Sidebar,app,Backbone,Marionette,$,_){
 		Sidebar.SongView = Backbone.Marionette.ItemView.extend({
 			tagName:'li',
 			className:'song-search-entry',
-			template: app.Template.get('songsearchentry')
+			template: tplSongSearchEntry
 		});
 		Sidebar.SongCompositeView = Backbone.Marionette.CompositeView.extend({
 			tagName: 'div',
 			className:'well',
-			template: app.Template.get('songsidebar'),
+			template: tplSongSidebar,
 			childView: Sidebar.SongView,
 			childViewContainer: 'ul',
 			events:{
