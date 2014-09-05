@@ -3,6 +3,8 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+ALLOWED_HOSTS = ['wl.timwhite.org']
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )

@@ -10,7 +10,11 @@
 	<link rel="stylesheet" href="/static/worshiplibrary/assets/css/style.css" />
 	<link href="/static/worshiplibrary/assets/js/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="/static/worshiplibrary/assets/js/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	{% if debug %}
 	<script data-main="static/worshiplibrary/main" src="/static/worshiplibrary/assets/js/require.js"></script>
+	{% else %}
+	<script src="/static/worshiplibrary/build/app-build.js"></script>
+	{% endif %}
 </head>
 <body>
 		<div class="navbar navbar-fixed-top navbar-inverse">
