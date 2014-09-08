@@ -1,7 +1,8 @@
 define(['marionette', 'bootstrap'], function(){
 	app = new Backbone.Marionette.Application();
 	app.addRegions({
-		songSidebar: '#song-sidebar'
+		songSidebar: '#song-sidebar',
+		arrangementSidebar: '#arrangement-sidebar'
 	});
 
 	app.addInitializer(function(){
