@@ -1,1 +1,1 @@
-<a href="{{id}}">{{#each arrangement_songs}} {{this.name}}{{#unless @last}}, {{/unless}}{{/each}} ({{description}})</a>
+<a href="{{id}}">{{#each arrangement_songs.models}} {{{getAttribute this 'name'}}}{{#unless @last}}, {{/unless}}{{/each}} ({{description}})</a>

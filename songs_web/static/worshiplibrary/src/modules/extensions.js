@@ -1,4 +1,4 @@
-define(['app'], function(app){
+define(['app', 'handlebars'], function(app, Handlebars){
 	app.module("Extensions", function(Extensions,app,Backbone,Marionette,$,_){
 		//modify Backbone.sync to include a csrf token from a cookie if present.
 		app.addInitializer(function(){
@@ -24,7 +24,10 @@ define(['app'], function(app){
 				return oldSync(method, model, options);
 			};
 		});
-
+		Handlebars.registerHelper('getAttribute', function(model, attribute) {
+			var value = model.get(attribute);
+			return new Handlebars.SafeString(value);
+		});
 	});
 });
 
