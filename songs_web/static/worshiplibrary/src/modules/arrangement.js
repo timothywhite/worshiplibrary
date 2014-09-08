@@ -237,6 +237,10 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 				});
 			}
 		});
+		Arrangement.Collection = Backbone.Collection.extend({
+			url: 'api/arrangement/',
+			model: Arrangement.Model
+		});
 		Arrangement.Layout = Backbone.Marionette.LayoutView.extend({
 			template: tplArr,
 			events:{

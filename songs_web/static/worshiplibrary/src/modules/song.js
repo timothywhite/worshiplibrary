@@ -1,4 +1,4 @@
-﻿define([
+define([
 	'app',
 	//Templates
 	'hbs!template/song',
@@ -42,7 +42,7 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 
 		Song.Collection = Backbone.Collection.extend({
 			url: '/api/song/',
-			model: app.Song.Model
+			model: Song.Model
 		});
 
 		Song.Layout = Backbone.Marionette.LayoutView.extend({
