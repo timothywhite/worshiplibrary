@@ -59,8 +59,8 @@ function(app, tplSongSidebar, tplSongSearchEntry, tplArrSidebar, tplArrSearchEnt
 				}
 			},
 			searchSongs:function(){
-				query = this.$el.find('input.search-songs').val();
-				if(query != ''){
+				var query = this.$el.find('input.search-songs').val();
+				if(query !== ''){
 					(function(view){
 						view.collection.fetch({
 							data:{
@@ -68,6 +68,7 @@ function(app, tplSongSidebar, tplSongSearchEntry, tplArrSidebar, tplArrSearchEnt
 							},
 							success:function(){
 								view.$el.find('li.song-search-entry a').click(function(e){
+									var id, song;
 									e.preventDefault();
 									id = $(this).attr('href');
 									song = view.collection.findWhere({id:parseInt(id)});
@@ -110,8 +111,8 @@ function(app, tplSongSidebar, tplSongSearchEntry, tplArrSidebar, tplArrSearchEnt
 
 			},
 			searchArrangments: function(){
-				query = this.$el.find('input.search-arrangements').val();
-				if(query != ''){
+				var query = this.$el.find('input.search-arrangements').val();
+				if(query !== ''){
 					(function(view){
 						view.collection.fetch({
 							data:{
@@ -119,6 +120,7 @@ function(app, tplSongSidebar, tplSongSearchEntry, tplArrSidebar, tplArrSearchEnt
 							},
 							success:function(){
 								view.$el.find('li.arrangement-search-entry a').click(function(e){
+									var id, arrangement;
 									e.preventDefault();
 									id = $(this).attr('href');
 									arrangement = view.collection.findWhere({id:parseInt(id)});
@@ -140,9 +142,9 @@ function(app, tplSongSidebar, tplSongSearchEntry, tplArrSidebar, tplArrSearchEnt
 		});
 		//initialize sidebars for application
 		app.addInitializer(function(){
-			songSidebarView = new Sidebar.SongCompositeView();
+			var songSidebarView = new Sidebar.SongCompositeView();
 			app.songSidebar.show(songSidebarView);
-			arrangementSidebarView = new Sidebar.ArrangementCompositeView();
+			var arrangementSidebarView = new Sidebar.ArrangementCompositeView();
 			app.arrangementSidebar.show(arrangementSidebarView);
 		});
 	});
