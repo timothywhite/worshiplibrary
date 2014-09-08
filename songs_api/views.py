@@ -113,6 +113,12 @@ class ArrangementList(generics.ListCreateAPIView):
 	"""
 	model = Arrangement
 	serializer_class = ArrangementSerializer
+	def get_queryset(self):
+		if 'q' in self.request.GET:
+			query = self.request.GET['q']
+			return Arrangement.objects.filter(Q(description__icontains=query) | Q(notes__icontains=query) | Q(verses__song__name__icontains=query)).distinct()
+		else:
+			return Arrangement.objects.all()
 		
 class ArrangementVerseDetail(generics.RetrieveUpdateDestroyAPIView):
 	"""
