@@ -61,8 +61,8 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 			initialize:function(){
 
 			},
-			removeSong:function(itemview){
-				this.collection.remove({id:itemview.model.get('id')});
+			removeSong:function(childview){
+				this.collection.remove({id:childview.model.get('id')});
 				this.render();
 			},
 			launchAddSongModal:function(){
@@ -79,7 +79,7 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 				(function(view){
 					$('input.add-song').typeahead({
 						source:function (query, process){
-							acCollection = new app.Song.Collection();
+							var acCollection = new app.Song.Collection();
 							acCollection.fetch({
 								data:{
 									q: $('input.add-song').val()
@@ -95,8 +95,8 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 							});
 						},
 						updater: function (name) {
-							data = _.find(responseData, function(song){ return song['name'] == name; });
-							song = new app.Song.Model({
+							var data = _.find(responseData, function(song){ return song['name'] == name; });
+							var song = new app.Song.Model({
 								id:data.id,
 								name:data.name,
 								verses:data.verses.toJSON()
@@ -153,19 +153,16 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 			childViewContainer:'tbody',
 			childView:Arrangement.VerseView,
 			initialize:function(){
-				this.on('itemview:verse:remove',this.removeVerse);
-				this.on('itemview:verse:up',this.moveUp);
-				this.on('itemview:verse:down',this.moveDown);
+				this.on('childview:verse:remove',this.removeVerse);
+				this.on('childview:verse:up',this.moveUp);
+				this.on('childview:verse:down',this.moveDown);
 				this.collection.comparator = function(model) {
 				  return model.get('order');
 				};
 			},
-			onBeforeRender:function(){
-				this.collection.sort();
-			},
-			removeVerse:function(itemview){
-				this.collection.remove({id:itemview.model.get('id')});
-				app.vent.trigger('destroy',itemview.model);
+			removeVerse:function(childview){
+				this.collection.remove({id:childview.model.get('id')});
+				app.vent.trigger('destroy',childview.model);
 				this.collection.forEach(function(verse,index){
 					verse.set('order',index);
 					app.vent.trigger('save',verse);
@@ -181,12 +178,12 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 				});
 				this.render();
 			},
-			moveUp:function(itemview){
-				src = itemview.model.get('order');
-				if (src != 0){
-					dst = src - 1;
-					dstModel = this.collection.findWhere({order:dst});
-					srcModel = this.collection.findWhere({order:src});
+			moveUp:function(childview){
+				var src = childview.model.get('order');
+				if (src !== 0){
+					var dst = src - 1,
+						dstModel = this.collection.findWhere({order:dst}),
+						srcModel = this.collection.findWhere({order:src});
 					dstModel.set('order',src);
 					srcModel.set('order',dst);
 					app.vent.trigger('save',dstModel);
@@ -196,12 +193,12 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 				}
 
 			},
-			moveDown:function(itemview){
-				src = itemview.model.get('order');
+			moveDown:function(childview){
+				var src = childview.model.get('order');
 				if (src != (this.collection.length - 1)){
-					dst = src + 1;
-					dstModel = this.collection.findWhere({order:dst});
-					srcModel = this.collection.findWhere({order:src});
+					var dst = src + 1,
+						dstModel = this.collection.findWhere({order:dst}),
+						srcModel = this.collection.findWhere({order:src});
 					dstModel.set('order',src);
 					srcModel.set('order',dst);
 					app.vent.trigger('save',dstModel);
@@ -261,7 +258,7 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 				this.$el.find('input.rename-arrangement').val(this.model.get('description'));
 			},
 			renameArrangement:function(){
-				descr = this.$el.find('input.rename-arrangement').val();
+				var descr = this.$el.find('input.rename-arrangement').val();
 				this.model.set('description',descr);
 				app.vent.trigger('save',this.model);
 				this.$el.find('h2').html(descr);
@@ -271,32 +268,32 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 				app.vent.trigger('save',this.model);
 			},
 			onTabAdd: function(){
-				versesLayout = new Arrangement.VerseCompositeView({
+				var versesLayout = new Arrangement.VerseCompositeView({
 					collection:this.model.get('arrangement_verses')
 				});
 				this.verses.show(versesLayout);
-				songsLayout = new Arrangement.SongCompositeView({
+				var songsLayout = new Arrangement.SongCompositeView({
 					collection:this.model.get('arrangement_songs'),
 					model: this.model
 				});
 				(function(view){
-					songsLayout.on('itemview:song:remove',function(songview){
-						song = songview.model;
+					songsLayout.on('childview:song:remove',function(songview){
+						var song = songview.model;
 						versesLayout.collection.where({song_name:song.get('name')}).forEach(function(model){
 							versesLayout.removeVerseByModel(model);
 						});
 						songsLayout.removeSong(songview);
 					});
-					songsLayout.on('itemview:itemview:verse:add',function(songview,verseview){
-						song = songview.model;
-						verse = verseview.model;
-						arrangementverse = new Arrangement.VerseModel({
-							description: verse.get('description'),
-							'song_name':song.get('name'),
-							order:versesLayout.collection.length,
-							arrangement: view.model.get('id'),
-							verse:verse.get('id')
-						});
+					songsLayout.on('childview:childview:verse:add',function(songview,verseview){
+						var song = songview.model,
+							verse = verseview.model,
+							arrangementverse = new Arrangement.VerseModel({
+								description: verse.get('description'),
+								'song_name':song.get('name'),
+								order:versesLayout.collection.length,
+								arrangement: view.model.get('id'),
+								verse:verse.get('id')
+							});
 						app.vent.trigger('save',arrangementverse);
 						versesLayout.collection.add(arrangementverse);
 					});

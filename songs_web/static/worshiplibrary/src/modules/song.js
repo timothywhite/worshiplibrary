@@ -81,7 +81,7 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 				app.vent.trigger('save',this.model);
 			},
 			removeSong:function(){
-				id = this.model.get('id');
+				var id = this.model.get('id');
 				app.vent.trigger('destroy',this.model);
 				app.songTabManager.closeTab({id:id});
 			},
@@ -89,8 +89,8 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 				this.$el.find('.remove-song-modal').modal('show');
 			},
 			renameSong:function(){
-				name = this.$el.find('input.rename-song').val();
-				if (name != ''){
+				var name = this.$el.find('input.rename-song').val();
+				if (name !== ''){
 					this.model.set('name',name);
 					app.vent.trigger('save',this.model);
 					this.$el.find('h2').html(name);
@@ -105,19 +105,19 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 				this.$el.find('input.rename-song').val(this.model.get('name'));
 			},
 			onTabAdd: function(){
-				versesLayout = new app.Verse.Layout({
+				var versesLayout = new app.Verse.Layout({
 					collection:this.model.get('verses'),
 					song_id: this.model.get('id')
 				});
 				this.verses.show(versesLayout);
 
-				authorsCompositeView = new app.SongAuthor.CompositeView({
+				var authorsCompositeView = new app.SongAuthor.CompositeView({
 					collection:this.model.get('song_authors'),
 					song_id: this.model.get('id')
 				});
 				this.authors.show(authorsCompositeView);
 
-				arrangementsCompositeView = new app.SongArrangement.CompositeView({
+				var arrangementsCompositeView = new app.SongArrangement.CompositeView({
 					collection:this.model.get('song_arrangements')
 				});
 				this.arrangements.show(arrangementsCompositeView);
@@ -148,7 +148,7 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 				'click':'showArrangement'
 			},
 			showArrangement:function(){
-				arrangement = new app.Arrangement.Model({id:this.model.get('arrangement')});
+				var arrangement = new app.Arrangement.Model({id:this.model.get('arrangement')});
 				arrangement.fetch({
 					success:function(model,response,options){
 						app.vent.trigger('tab:show',model);
@@ -225,9 +225,9 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 			},
 			initialize:function(options){
 				this.song_id = options['song_id'];
-				this.on('itemview:author:up',this.upAuthor);
-				this.on('itemview:author:down',this.downAuthor);
-				this.on('itemview:author:remove',this.removeAuthor);
+				this.on('childview:author:up',this.upAuthor);
+				this.on('childview:author:down',this.downAuthor);
+				this.on('childview:author:remove',this.removeAuthor);
 				this.collection.comparator = function(model) {
 				  return model.get('order');
 				};
@@ -251,7 +251,7 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 				(function(view){
 					$('input.add-existing-author').typeahead({
 						source:function (query, process){
-							acCollection = new app.Author.Collection();
+							var acCollection = new app.Author.Collection();
 							acCollection.fetch({
 								data:{
 									q: $('input.add-existing-author').val()
@@ -267,13 +267,13 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 							});
 						},
 						updater: function (name) {
-							id = _.find(responseData, function(author){ return author['name'] == name; })['id'];
-							author = new SongAuthor.Model({
-								name: name,
-								order: view.collection.length,
-								author: id,
-								song: view.song_id
-							});
+							var id = _.find(responseData, function(author){ return author['name'] == name; })['id'],
+								author = new SongAuthor.Model({
+									name: name,
+									order: view.collection.length,
+									author: id,
+									song: view.song_id
+								});
 							app.vent.trigger('save',author);
 
 							view.$el.find('.alert').fadeIn(400, function(){
@@ -295,14 +295,14 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 				this.$el.find('.add-author-modal').modal('show');
 			},
 			addNewAuthor:function(){
-				name = this.$el.find('input.add-new-author').val();
-				author = new app.Author.Model({
-					name:name
-				});
+				var name = this.$el.find('input.add-new-author').val(),
+					author = new app.Author.Model({
+						name:name
+					});
 				(function(view){
 					author.save(null,{
 						success:function(){
-							songAuthor = new SongAuthor.Model({
+							var songAuthor = new SongAuthor.Model({
 								name: name,
 								order: view.collection.length,
 								author: author.get('id'),
@@ -324,12 +324,12 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 					});
 				})(this);
 			},
-			upAuthor:function(itemview){
-				src = itemview.model.get('order');
-				if (src != 0){
-					dst = src - 1;
-					dstModel = this.collection.findWhere({order:dst});
-					srcModel = this.collection.findWhere({order:src});
+			upAuthor:function(childview){
+				var src = childview.model.get('order');
+				if (src !== 0){
+					var dst = src - 1,
+						dstModel = this.collection.findWhere({order:dst}),
+						srcModel = this.collection.findWhere({order:src});
 					dstModel.set('order',src);
 					srcModel.set('order',dst);
 					app.vent.trigger('save',dstModel);
@@ -338,12 +338,12 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 					this.render();
 				}
 			},
-			downAuthor:function(itemview){
-				src = itemview.model.get('order');
+			downAuthor:function(childview){
+				var src = childview.model.get('order');
 				if (src != (this.collection.length - 1)){
-					dst = src + 1;
-					dstModel = this.collection.findWhere({order:dst});
-					srcModel = this.collection.findWhere({order:src});
+					var dst = src + 1,
+						dstModel = this.collection.findWhere({order:dst}),
+						srcModel = this.collection.findWhere({order:src});
 					dstModel.set('order',src);
 					srcModel.set('order',dst);
 					app.vent.trigger('save',dstModel);
@@ -352,9 +352,9 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 					this.render();
 				}
 			},
-			removeAuthor:function(itemview){
-				this.collection.remove({id:itemview.model.get('id')});
-				app.vent.trigger('destroy',itemview.model);
+			removeAuthor:function(childview){
+				this.collection.remove({id:childview.model.get('id')});
+				app.vent.trigger('destroy',childview.model);
 				this.collection.forEach(function(author,index){
 					author.set('order',index);
 					app.vent.trigger('save',author);
