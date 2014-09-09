@@ -42,7 +42,7 @@ function(app, tplTab){
 		Tab.CollectionView = Backbone.Marionette.CollectionView.extend({
 			childView: Tab.View,
 			onAfterItemAdded: function(){
-				index = this.collection.indexOf(this.collection.findWhere({'active':true}));
+				var index = this.collection.indexOf(this.collection.findWhere({'active':true}));
 				this.$('li:eq('+index+') a').tab('show');
 			},
 			initialize:function(){
@@ -53,12 +53,11 @@ function(app, tplTab){
 
 			},
 			closeTab: function(id){
-
-				model = this.collection.findWhere({id:id});
-				isActive = model.get('active');
+				var model = this.collection.findWhere({id:id}),
+					isActive = model.get('active');
 				if (isActive){
 					if(this.collection.length != 1){
-						index = this.collection.indexOf(model);
+						var index = this.collection.indexOf(model);
 						if(index == (this.collection.length-1)){
 							index--;
 						}else{
@@ -80,9 +79,9 @@ function(app, tplTab){
 			},
 			showTab: function(id){
 				this.resetActiveTab();
-				model = this.collection.findWhere({id:id});
+				var model = this.collection.findWhere({id:id}),
+					index = this.collection.indexOf(model);
 				model.set('active',true);
-				index = this.collection.indexOf(model);
 				this.$('li:eq('+index+')').removeClass('active');
 				this.$('li:eq('+index+') a').tab('show');
 			},
@@ -131,7 +130,7 @@ function(app, tplTab){
 			});
 
 			this.addTab = function(options){
-				id = options['model'].get('id');
+				var id = options['model'].get('id');
 				if(!this.tabPaneView.collection.findWhere({id:id})){
 					this.tabPaneView.addPane(options['model']);
 					this.tabView.addTab({
@@ -160,8 +159,8 @@ function(app, tplTab){
 				return this;
 			};
 			this.renameTab = function(options){
-				id = options['id'];
-				title = options['title'];
+				var id = options['id'],
+					title = options['title'];
 				this.tabView.collection.findWhere({id:id}).set('title',title);
 				this.tabView.render();
 			},
@@ -169,7 +168,7 @@ function(app, tplTab){
 				return this.tabPaneView.collection;
 			};
 			this.getActivePane = function(){
-				activeTab = this.tabView.collection.findWhere({active:true});
+				var activeTab = this.tabView.collection.findWhere({active:true});
 				return this.tabPaneView.collection.findWhere({id:activeTab.get('id')});
 			};
 			this.renderPanes = function(){
