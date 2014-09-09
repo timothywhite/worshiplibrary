@@ -46,8 +46,8 @@ function(app, tplTab){
 				this.$('li:eq('+index+') a').tab('show');
 			},
 			initialize:function(){
-				this.on('itemview:tab:close',function(itemview,id){this.closeTab(id)});
-				this.on('itemview:tab:select',function(itemview,id){this.selectTab(id)});
+				this.on('childview:tab:close',function(childview,id){this.closeTab(id)});
+				this.on('childview:tab:select',function(childview,id){this.selectTab(id)});
 			},
 			onRender:function(){
 
@@ -101,7 +101,7 @@ function(app, tplTab){
 				this.collection.remove({id:id});
 			},
 			initialize:function(){
-				this.on('itemview:update',function(){
+				this.on('childview:update',function(){
 					this.render();
 				});
 			}
