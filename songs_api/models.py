@@ -38,7 +38,7 @@ class SongAuthor(models.Model):
 		return self.author.name
 	
 class Arrangement(models.Model):
-	notes = models.CharField(max_length=255)
+	notes = models.CharField(max_length=255, blank=True)
 	description = models.CharField(max_length=255)
 	verses = models.ManyToManyField('Verse', through='ArrangementVerse')
 	
