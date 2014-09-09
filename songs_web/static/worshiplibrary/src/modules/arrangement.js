@@ -101,6 +101,7 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 								name:data.name,
 								verses:data.verses.toJSON()
 							});
+							song.set('arrangement', view.model.get('id'));
 							view.collection.add(song);
 								view.$el.find('.alert').fadeIn(400, function(){
 								setTimeout(function(){
@@ -268,14 +269,17 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 				app.vent.trigger('save',this.model);
 			},
 			onTabAdd: function(){
-				var versesLayout = new Arrangement.VerseCompositeView({
-					collection:this.model.get('arrangement_verses')
-				});
-				this.verses.show(versesLayout);
-				var songsLayout = new Arrangement.SongCompositeView({
-					collection:this.model.get('arrangement_songs'),
-					model: this.model
-				});
+				var model = this.model,
+					versesLayout = new Arrangement.VerseCompositeView({
+						collection:this.model.get('arrangement_verses')
+					}),
+					songsLayout = new Arrangement.SongCompositeView({
+						collection: new app.Song.Collection(this.model.get('arrangement_songs').map(function(song){
+							song.set('arrangement', model.get('id'));
+							return song;
+						})),
+						model: this.model
+					});
 				(function(view){
 					songsLayout.on('childview:song:remove',function(songview){
 						var song = songview.model;
@@ -298,6 +302,7 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 						versesLayout.collection.add(arrangementverse);
 					});
 				})(this);
+				this.verses.show(versesLayout);
 				this.songs.show(songsLayout);
 			}
 		});

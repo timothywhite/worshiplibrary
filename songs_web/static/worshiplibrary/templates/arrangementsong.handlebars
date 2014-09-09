@@ -1,11 +1,11 @@
 <div class="accordion-heading">
 	<button class="btn remove-song"><i class="icon-remove"></i></button>
 	<button class="btn view-song"><i class="icon-eye-open"></i></button>
-	<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#arrangement-songs-{{arrangement}}" href="#arrangement-song-{{id}}">
+	<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#arrangement-songs-{{arrangement}}" href="#arrangement-{{arrangement}}-song-{{id}}">
 		{{name}}
 	</a>
 </div>
-<div class="accordion-body collapse" id="arrangement-song-{{id}}" >
+<div class="accordion-body collapse" id="arrangement-{{arrangement}}-song-{{id}}" >
 	<div class="accordion-inner">
 		<table class="table table-condensed table-hover">
 			<thead>
