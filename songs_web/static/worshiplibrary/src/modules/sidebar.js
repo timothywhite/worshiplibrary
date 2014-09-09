@@ -40,9 +40,9 @@ function(app, tplSongSidebar, tplSongSearchEntry, tplArrSidebar, tplArrSearchEnt
 				}
 			},
 			addNewSong:function(){
-				name = this.$el.find('input.add-new-song').val();
-				if (name != ''){
-					song = new app.Song.Model({name:name});
+				var name = this.$el.find('input.add-new-song').val();
+				if (name !== ''){
+					var song = new app.Song.Model({name:name});
 					song.save(null,{
 						success:function(){
 							app.songTabManager.addTab({
@@ -108,7 +108,23 @@ function(app, tplSongSidebar, tplSongSearchEntry, tplArrSidebar, tplArrSearchEnt
 				this.collection = new app.Arrangement.Collection();
 			},
 			addNewArrangement: function(){
-
+				var description = this.$el.find('input.add-new-arrangement').val();
+				if (description !== ''){
+					var arrangement = new app.Arrangement.Model({description:description});
+					arrangement.save(null,{
+						success:function(){
+							app.arrangementTabManager.addTab({
+								title: arrangement.get('name'),
+								model: arrangement
+							}).showTab({
+								id:arrangement.get('id')
+							});
+						},
+						error:function(model, response, options){
+							app.vent.trigger('save:error',response.status);
+						}
+					});
+				}
 			},
 			searchArrangments: function(){
 				var query = this.$el.find('input.search-arrangements').val();
