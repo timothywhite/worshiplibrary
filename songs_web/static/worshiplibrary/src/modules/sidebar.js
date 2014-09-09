@@ -114,7 +114,7 @@ function(app, tplSongSidebar, tplSongSearchEntry, tplArrSidebar, tplArrSearchEnt
 					arrangement.save(null,{
 						success:function(){
 							app.arrangementTabManager.addTab({
-								title: arrangement.get('name'),
+								title: arrangement.get('description'),
 								model: arrangement
 							}).showTab({
 								id:arrangement.get('id')
