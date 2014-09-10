@@ -32,9 +32,9 @@ function(app, tplSongSidebar, tplSongSearchEntry, tplArrSidebar, tplArrSearchEnt
 			},
 			catchKeyup: function(e){
 				if(e.keyCode == 13){
-					if(e.srcElement.className == 'add-new-song'){
+					if(e.originalEvent.srcElement.className == 'add-new-song'){
 						this.addNewSong();
-					}else if(e.srcElement.className == 'search-songs'){
+					}else if(e.originalEvent.srcElement.className == 'search-songs'){
 						this.searchSongs();
 					}
 				}
@@ -106,6 +106,15 @@ function(app, tplSongSidebar, tplSongSearchEntry, tplArrSidebar, tplArrSearchEnt
 			},
 			initialize: function(){
 				this.collection = new app.Arrangement.Collection();
+			},
+			catchKeyup: function(e){
+				if(e.keyCode == 13){
+					if(e.originalEvent.srcElement.className == 'add-new-arrangement'){
+						this.addNewArrangement();
+					}else if(e.originalEvent.srcElement.className == 'search-arrangements'){
+						this.searchArrangments();
+					}
+				}
 			},
 			addNewArrangement: function(){
 				var description = this.$el.find('input.add-new-arrangement').val();
