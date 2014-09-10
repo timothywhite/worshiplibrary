@@ -44,4 +44,5 @@ require([
 	'module/song',
 	'module/verse',
 	'module/arrangement',
+	'module/setlist',
 ]);
