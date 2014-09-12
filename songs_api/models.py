@@ -78,7 +78,7 @@ class SetList(models.Model):
 	
 class SetListArrangement(models.Model):
 	order = models.IntegerField()
-	setlist = models.ForeignKey('SetList')
+	setlist = models.ForeignKey('SetList', related_name='setlist_arrangements')
 	arrangement = models.ForeignKey('Arrangement', related_name='setlists')
 	
 	def __unicode__(self):

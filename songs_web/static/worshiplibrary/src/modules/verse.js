@@ -142,15 +142,15 @@ function(app, tplEditVerseChord, tplVerseChord, tplEditVerse, tplVerse, tplVerse
 				}
 			},
 			addVerse:function(){
-				description = this.$el.find('input.add-new-verse').val();
-				verse = new Verse.Model({
-					description: description,
-					chords: '\n',
-					lines:'\n',
-					song: this.song_id,
-					editmode: this.editmode,
-					chordmode: this.chordmode
-				});
+				var description = this.$el.find('input.add-new-verse').val(),
+					verse = new Verse.Model({
+						description: description,
+						chords: '\n',
+						lines:'\n',
+						song: this.song_id,
+						editmode: this.editmode,
+						chordmode: this.chordmode
+					});
 				(function(view){
 					verse.save(null,{
 						success:function(){
@@ -176,13 +176,13 @@ function(app, tplEditVerseChord, tplVerseChord, tplEditVerse, tplVerse, tplVerse
 				this.$el.find('.remove-verse-modal').modal('show');
 			},
 			removeVerse:function(){
-				activeModel = this.tabManager.getActivePane();
+				var activeModel = this.tabManager.getActivePane();
 				this.tabManager.closeTab({id:activeModel.get('id')});
 				app.vent.trigger('destroy',activeModel);
 			},
 			renameVerse:function(){
-				description = this.$el.find('input.rename-verse').val();
-				activeModel = this.tabManager.getActivePane();
+				var description = this.$el.find('input.rename-verse').val(),
+					activeModel = this.tabManager.getActivePane();
 				activeModel.set('description',description);
 				this.tabManager.renameTab({id:activeModel.get('id'),title:description});
 				app.vent.trigger('save',activeModel);
@@ -198,7 +198,7 @@ function(app, tplEditVerseChord, tplVerseChord, tplEditVerse, tplVerse, tplVerse
 					$('input.rename-verse').focus();
 					$('input.rename-verse').select();
 				});
-				activeModel = this.tabManager.getActivePane();
+				var activeModel = this.tabManager.getActivePane();
 				this.$el.find('input.rename-verse').val(activeModel.get('description'));
 				this.$el.find('.rename-verse-modal').modal('show');
 			},
@@ -231,7 +231,7 @@ function(app, tplEditVerseChord, tplVerseChord, tplEditVerse, tplVerse, tplVerse
 			},
 			onShow:function(){
 				if(this.collection){
-					tabManager = new app.Tab.TabManager({
+					var tabManager = new app.Tab.TabManager({
 						type: 'verse',
 						panesEl: this.$el.find('.verse-content'),
 						tabsEl:this.$el.find('.verse-tabs'),

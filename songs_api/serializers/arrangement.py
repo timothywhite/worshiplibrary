@@ -39,3 +39,8 @@ class ArrangementSerializer(serializers.ModelSerializer):
 		fields = ('id','notes','description','last_setlist_date','arrangement_verses','arrangement_songs','setlists')
 		read_only_fields = ('verses',)
 		
+class ArrangementListSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Arrangement
+		fields = ('id', 'description')
+	
