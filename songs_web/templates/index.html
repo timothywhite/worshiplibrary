@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -9,7 +9,7 @@
 
 	<link rel="stylesheet" href="/static/worshiplibrary/assets/css/style.css" />
 	<link href="/static/worshiplibrary/assets/js/bootstrap/css/bootstrap.css" rel="stylesheet">
-	<link href="/static/worshiplibrary/assets/js/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="/static/worshiplibrary/assets/js/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 	{% if debug %}
 	<script data-main="static/worshiplibrary/main" src="/static/worshiplibrary/assets/js/require.js"></script>
 	{% else %}
@@ -17,45 +17,51 @@
 	{% endif %}
 </head>
 <body>
-		<div class="navbar navbar-fixed-top navbar-inverse">
-			<div class="navbar-inner">
-				<div class="container">
-					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="brand" href="#">Worship Library</a>
-					<div class="nav-collapse collapse">
-						<ul class="nav">
-							<li class="active">
-								<a id="app-song-tab" href="#song-wrap" data-toggle="tab">Songs</a>
-							</li>
-							<li class="">
-								<a id="app-arrangement-tab" href="#arrangement-wrap" data-toggle="tab">Arrangements</a>
-							</li>
-							<li class="">
-								<a id="app-setlist-tab" href="#setlist-wrap" data-toggle="tab">Set Lists</a>
-							</li>
-							<li class="">
-								<a href="/api" target="_blank">Api</a>
-							</li>
-							<li class="">
-								<a href="/logout" >Logout</a>
-							</li>
-						</ul>
-					</div>
-				</div>
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Worship Library</a>
 			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active">
+								<a id="app-song-tab" href="#song-wrap" data-toggle="tab">Songs</a>
+					</li>
+					<li class="">
+						<a id="app-arrangement-tab" href="#arrangement-wrap" data-toggle="tab">Arrangements</a>
+					</li>
+					<li class="">
+						<a id="app-setlist-tab" href="#setlist-wrap" data-toggle="tab">Set Lists</a>
+					</li>
+					<li class="">
+						<a href="/api" target="_blank">Api</a>
+					</li>
+					<li class="">
+						<a href="/logout" >Logout</a>
+					</li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
 		</div>
+		<!-- /.container-fluid -->
+	</nav>
 	<div class="container-fluid" id="main-wrap">
 		<div class="tab-content">
 			<div id="song-wrap" class="tab-pane active container-fluid">
 				<div class="row-fluid">
-					<div id="song-sidebar" class="span3 sidebar">
+					<div id="song-sidebar" class="col-md-3 sidebar">
 					<div class="well"></div>
 					</div><!--/span-->
-						<div class="span9">
+						<div class="col-md-9">
 							<div class="row-fluid">
 								<ul class='nav nav-tabs' id='song-tabs'></ul>
 							</div>
@@ -66,11 +72,11 @@
 			</div><!--/.fluid-container-->
 			<div id="arrangement-wrap" class="tab-pane container-fluid">
 				<div class="row-fluid">
-					<div id="arrangement-sidebar" class="span3 sidebar">
+					<div id="arrangement-sidebar" class="col-md-3 sidebar">
 						<div class="well" >
 						</div><!--/.well -->
 					</div><!--/span-->
-					<div class="span9" id='main'>
+					<div class="col-md-9" id='main'>
 						<div class="row-fluid" >
 								<ul class='nav nav-tabs' id='arrangement-tabs'></ul>
 						</div>
@@ -81,11 +87,11 @@
 			</div><!--/.fluid-container-->
 			<div id="setlist-wrap" class="tab-pane container-fluid">
 				<div class="row-fluid">
-					<div class="span3 sidebar">
+					<div class="col-md-3 sidebar">
 						<div id="setlist-sidebar" class="well" >
 						</div><!--/.well -->
 					</div><!--/span-->
-					<div class="span9" id='main'>
+					<div class="col-md-9" id='main'>
 						<div class="row-fluid"  id="setlist-tabs">
 						</div>
 						<div class="tab-content" id="setlist-content">

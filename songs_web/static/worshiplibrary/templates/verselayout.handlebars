@@ -1,17 +1,21 @@
-﻿<h3>Verses</h3>
+<h3>Verses</h3>
 <div class="row-fluid spaced">
 	<div class="btn-toolbar">
-		<div class="btn-group" data-toggle="buttons-radio">
-			<button class="btn active button-text" title="text view"> <i class="icon-list-alt"></i></button>
-			<button class="btn button-chords" title="chordsheet view"><i class="icon-music"></i></button>
+		<div class="btn-group" data-toggle="buttons">
+			<label class="btn btn-default active button-text">
+				<input type="radio" checked> <i class="glyphicon glyphicon-list-alt"></i>
+			</label>
+			<label class="btn btn-default button-chords">
+				<input type="radio"> <i class="glyphicon glyphicon-music"></i></button>
+			</label>
 		</div>
 		<div class="btn-group">
-			<button class="btn button-edit" data-toggle="buttons-radio" title="edit"><i class="icon-pencil"></i></button>
-			<button class="btn button-rename" title="rename"><i class="icon-italic"></i></button>
-			<button class="btn button-remove" title="remove"><i class="icon-remove"></i></button>
+			<button class="btn btn-default button-edit" data-toggle="buttons-radio" title="edit"><i class="glyphicon glyphicon-pencil"></i></button>
+			<button class="btn btn-default button-rename" title="rename"><i class="glyphicon glyphicon-italic"></i></button>
+			<button class="btn btn-default button-remove" title="remove"><i class="glyphicon glyphicon-remove"></i></button>
 		</div>
 		<div class="btn-group">
-			<button class="btn button-add" title="add"><i class="icon-plus"></i></button>
+			<button class="btn btn-default button-add" title="add"><i class="glyphicon glyphicon-plus"></i></button>
 		</div>
 	</div>
 </div><!--end row-->
@@ -22,45 +26,57 @@
 		</div>
 	</div>
 </div><!--end row-->
-<div class="modal hide fade add-verse-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3>Add Verses</h3>
-	</div>
-	<div class="modal-body">
-		<div class="input-append">
-			<input class="add-new-verse" type="text" placeholder="enter verse description">
-			<button class="btn add-new-verse" type="button">Add</button>
-		</div>
-	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Done</button>
-		<div class="alert alert-success">
-			<div>Verse added</div>
+<div class="modal fade add-verse-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3>Add Verses</h3>
+			</div>
+			<div class="modal-body">
+				<div class="input-append">
+					<input class="add-new-verse" type="text" placeholder="enter verse description">
+					<button class="btn add-new-verse" type="button">Add</button>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Done</button>
+				<div class="alert alert-success">
+					<div>Verse added</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-<div class="modal hide fade rename-verse-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3>Rename Verse</h3>
-	</div>
-	<div class="modal-body">
-		<input class="rename-verse" type="text" placeholder="enter verse description">
-	</div>
-	<div class="modal-footer">
-		<button class="btn rename-verse" data-dismiss="modal" aria-hidden="true">Save</button>
+<div class="modal fade rename-verse-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3>Rename Verse</h3>
+			</div>
+			<div class="modal-body">
+				<input class="rename-verse" type="text" placeholder="enter verse description">
+			</div>
+			<div class="modal-footer">
+				<button class="btn rename-verse" data-dismiss="modal" aria-hidden="true">Save</button>
+			</div>
+		</div>
 	</div>
 </div>
-<div class="modal hide fade remove-verse-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-header">
-		<h3>Remove Verse</h3>
-	</div>
-	<div class="modal-body">
-		Are you sure you want to completely delete this verse forever in an irreversible fashion?
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-danger remove-verse" data-dismiss="modal" aria-hidden="true">Yes, delete this verse forever.</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">NO! Get me outta here!</button>
+<div class="modal fade remove-verse-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Remove Verse</h3>
+			</div>
+			<div class="modal-body">
+				Are you sure you want to completely delete this verse forever in an irreversible fashion?
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger remove-verse" data-dismiss="modal" aria-hidden="true">Yes, delete this verse forever.</button>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">NO! Get me outta here!</button>
+			</div>
+		</div>
 	</div>
 </div>

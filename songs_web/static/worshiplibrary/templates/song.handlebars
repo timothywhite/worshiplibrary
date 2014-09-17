@@ -1,8 +1,8 @@
 <div class="row-fluid">
 	<h2>{{name}}</h2>
 	<div class="btn-group">
-		<button class="btn button-rename-song" title="rename"><i class="icon-repeat"></i></button>
-		<button class="btn button-remove-song" title="remove"><i class="icon-remove"></i></button>
+		<button class="btn btn-default button-rename-song" title="rename"><i class="glyphicon glyphicon-repeat"></i></button>
+		<button class="btn btn-default button-remove-song" title="remove"><i class="glyphicon glyphicon-remove"></i></button>
 	</div>
 	<hr>
 </div>
@@ -17,27 +17,35 @@
     </label>
 </div><!--end row-->
 
-<div class="modal hide fade rename-song-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3>Rename Song</h3>
-	</div>
-	<div class="modal-body">
-		<input class="rename-song" type="text" placeholder="enter song title">
-	</div>
-	<div class="modal-footer">
-		<button class="btn rename-song" data-dismiss="modal" aria-hidden="true">Save</button>
+<div class="modal fade rename-song-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3>Rename Song</h3>
+			</div>
+			<div class="modal-body">
+				<input class="rename-song" type="text" placeholder="enter song title">
+			</div>
+			<div class="modal-footer">
+				<button class="btn rename-song" data-dismiss="modal" aria-hidden="true">Save</button>
+			</div>
+		</div>
 	</div>
 </div>
-<div class="modal hide fade remove-song-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-header">
-		<h3>Remove Song</h3>
-	</div>
-	<div class="modal-body">
-		Are you sure you want to completely delete this song forever in an irreversible fashion?
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-danger remove-song" data-dismiss="modal" aria-hidden="true">Yes, delete this song forever.</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">NO! Get me outta here!</button>
+<div class="modal fade remove-song-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Remove Song</h3>
+			</div>
+			<div class="modal-body">
+				Are you sure you want to completely delete this song forever in an irreversible fashion?
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger remove-song" data-dismiss="modal" aria-hidden="true">Yes, delete this song forever.</button>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">NO! Get me outta here!</button>
+			</div>
+		</div>
 	</div>
 </div>

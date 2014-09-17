@@ -248,7 +248,7 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 			},
 			setupModal: function(){
 				var responseData = [];
-				(function(view){
+				/*(function(view){
 					$('input.add-existing-author').typeahead({
 						source:function (query, process){
 							var acCollection = new app.Author.Collection();
@@ -286,7 +286,7 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 							return "";
 						}
 					});
-				})(this);
+				})(this);*/
 			},
 			launchModal:function(){
 				this.$el.find('.add-author-modal').on('shown',function(){

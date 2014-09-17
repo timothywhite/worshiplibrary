@@ -11,28 +11,32 @@
 	<tfoot>
 		<tr>
 			<td colspan="2" class="add-author">
-				<button class="btn button-add-author"><i class="icon-plus"></i></button>
+				<button class="btn btn-default button-add-author"><i class="glyphicon glyphicon-plus"></i></button>
 			</td>
 		</tr>
 	</tfoot>
 </table>
-<div class="modal hide fade add-author-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3>Add Authors</h3>
-	</div>
-	<div class="modal-body">
-		<input type="text" data-provide="typeahead" class="add-existing-author" placeholder="add existing author">
-		<span>or</span>
-		<div class="input-append">
-			<input class="add-new-author" type="text" placeholder="add new author">
-			<button class="btn add-new-author" type="button">Add</button>
-		</div>
-	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Done</button>
-		<div class="alert alert-success">
-			<div>Author added</div>
+<div class="modal fade add-author-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3>Add Authors</h3>
+			</div>
+			<div class="modal-body">
+				<input type="text" data-provide="typeahead" class="add-existing-author" placeholder="add existing author">
+				<span>or</span>
+				<div class="input-append">
+					<input class="add-new-author" type="text" placeholder="add new author">
+					<button class="btn add-new-author" type="button">Add</button>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Done</button>
+				<div class="alert alert-success">
+					<div>Author added</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
