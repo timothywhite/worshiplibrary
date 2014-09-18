@@ -78,26 +78,38 @@ pre.chord-edit input{
 }
 /*arrangement tab---------------------------------------------------------------------------------*/
 /*songs---------------------------*/
-#arrangement-content .songs button{
-	float:right;
+.songs .panel-heading button{
+	float: right;
+	margin-top: -11px;
 }
-.songs .accordion-heading button{
-	visibility:hidden;
+.songs .panel-heading button{
+	visibility: hidden;
 	position: relative;
 	top: 3px;
 	left: -3px;
 }
-.songs .accordion-heading:hover button{
+.songs .panel-heading:hover button{
 	visibility:visible;
+}
+.songs button.add-song{
+	float: left;
+	margin: -2px 0 10px 10px;
+}
+.songs h3 {
+	float: left;
+	margin: 0;
+}
+.songs .arrangement-songs{
+	clear: both;
 }
 /*verses---------------------------*/
 .verse-controls button{
-	float:right;
-	visibility:hidden;
+	float: right;
+	visibility: hidden;
 }
 .verse-controls .modal button{
-	visibility:visible
+	visibility: visible
 }
 tr:hover .verse-controls button{
-	visibility:visible;
+	visibility: visible;
 }

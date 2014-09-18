@@ -1,12 +1,14 @@
-<div class="accordion-heading">
-	<button class="btn remove-song"><i class="icon-remove"></i></button>
-	<button class="btn view-song"><i class="icon-eye-open"></i></button>
-	<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#arrangement-songs-{{arrangement}}" href="#arrangement-{{arrangement}}-song-{{id}}">
-		{{name}}
-	</a>
+<div class="panel-heading">
+	<button class="btn btn-default remove-song"><i class="glyphicon glyphicon-remove"></i></button>
+	<button class="btn btn-default view-song"><i class="glyphicon glyphicon-eye-open"></i></button>
+	<h4 class="panel-title">
+		<a data-toggle="collapse" data-parent=".accordion" href="#arrangement-{{arrangement}}-song-{{id}}">
+			{{name}}
+		</a>
+	</h4>
 </div>
-<div class="accordion-body collapse" id="arrangement-{{arrangement}}-song-{{id}}" >
-	<div class="accordion-inner">
+<div id="arrangement-{{arrangement}}-song-{{id}}" class="panel-collapse collapse">
+	<div class="panel-body">
 		<table class="table table-condensed table-hover">
 			<thead>
 				<tr>
