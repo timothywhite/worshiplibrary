@@ -2,20 +2,24 @@
 <td class="verse-controls">
 	<button class="btn btn-default add-verse"><i class="glyphicon glyphicon-plus"></i></button>
 	<button class="btn btn-default view-verse"><i class="glyphicon glyphicon-eye-open"></i></button>
-	<div class="modal hide fade view-verse-modal" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3>Verse Preview</h3>
-		</div>
-		<div class="modal-body">
-			<pre>
-{{#each line_pairs}}{{this.[0]}}
-{{this.[1]}}
-{{/each}}
-</pre>
-		</div>
-		<div class="modal-footer">
-			<button class="btn rename-song" data-dismiss="modal" aria-hidden="true">Done</button>
+	<div class="modal  fade view-verse-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3>Verse Preview</h3>
+				</div>
+				<div class="modal-body">
+					<pre>
+		{{#each line_pairs}}{{this.[0]}}
+		{{this.[1]}}
+		{{/each}}
+		</pre>
+				</div>
+				<div class="modal-footer">
+					<button class="btn rename-song" data-dismiss="modal" aria-hidden="true">Done</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </td>

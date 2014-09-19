@@ -92,7 +92,7 @@ pre.chord-edit input{
 	visibility:visible;
 }
 .songs button.add-song{
-	float: left;
+	float: right;
 	margin: -2px 0 10px 10px;
 }
 .songs h3 {
