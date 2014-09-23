@@ -76,7 +76,7 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 			},
 			setupModal: function(){
 				var responseData = [];
-				/*(function(view){
+				(function(view){
 					$('input.add-song').typeahead({
 						source:function (query, process){
 							var acCollection = new app.Song.Collection();
@@ -111,7 +111,7 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 							return "";
 						}
 					});
-				})(this);*/
+				})(this);
 			},
 		});
 		Arrangement.VerseModel = Backbone.Model.extend({

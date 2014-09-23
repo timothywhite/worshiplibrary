@@ -2135,24 +2135,8 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
  * ============================================================ */
 
 
-(function(root, factory) {
+(function($) {
 
-  "use strict";
-
-  // CommonJS module is defined
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = factory(require('jquery')(root));
-  }
-  // AMD module is defined
-  else if (typeof define === "function" && define.amd) {
-    define("bootstrap3-typeahead", ["jquery"], function($) {
-      return factory($);
-    });
-  } else {
-    factory(root.jQuery);
-  }
-
-}(this, function($) {
 
   "use strict";
   // jshint laxcomma: true
@@ -2405,7 +2389,8 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
           this.prev();
           break;
 
-        case 40: // down arrow
+ 
+       case 40: // down arrow
           e.preventDefault();
           this.next();
           break;
@@ -2543,4 +2528,4 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     $this.typeahead($this.data());
   });
 
-}));
+})(jQuery);
