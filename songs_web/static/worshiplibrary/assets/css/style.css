@@ -113,3 +113,11 @@ pre.chord-edit input{
 tr:hover .verse-controls button{
 	visibility: visible;
 }
+/*setlists--------------------------------------------------------------------------------------------------*/
+tr:hover .arrangement-controls button{
+	visibility:visible;
+}
+.arrangement-controls button{
+	float:right;
+	visibility:hidden;
+}

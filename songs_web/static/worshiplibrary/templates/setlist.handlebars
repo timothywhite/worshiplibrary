@@ -1,0 +1,60 @@
+<div class="row-fluid">
+	<h2>{{description}}</h2>
+	<div class="btn-group">
+		<button class="btn btn-default button-rename-setlist" title="rename"><i class="glyphicon glyphicon-pencil"></i></button>
+		<button class="btn btn-default button-remove-setlist" title="remove"><i class="glyphicon glyphicon-remove"></i></button>
+	</div>
+	<hr>
+</div>
+<div class="row-fluid arrangements">
+	<h3>Arrangements</h3>
+	<table class="table table-striped arrangment-table">
+		<thead>
+			<tr>
+				<th>
+					Description
+				</th>
+				<th>
+					Notes
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="add-button">
+					<button class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></button>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+<div class="modal hide fade rename-setlist-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3>Rename Song</h3>
+	</div>
+	<div class="modal-body">
+		<input class="rename-setlist" type="text" placeholder="enter setlist title">
+	</div>
+	<div class="modal-footer">
+		<button class="btn rename-setlist" data-dismiss="modal" aria-hidden="true">Save</button>
+	</div>
+</div>
+
+<div class="modal hide fade remove-setlist-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-header">
+		<h3>Remove Song</h3>
+	</div>
+	<div class="modal-body">
+		Are you sure you want to completely delete this setlist forever in an irreversible fashion?
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-danger remove-setlist" data-dismiss="modal" aria-hidden="true">Yes, delete this setlist forever.</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">NO! Get me outta here!</button>
+	</div>
+</div>
