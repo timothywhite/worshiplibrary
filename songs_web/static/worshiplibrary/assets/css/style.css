@@ -4,7 +4,7 @@ html {
 #main-wrap{
 	margin-top: 75px;
 }
-.row.spaced, .row-fluid.spaced{
+.row-spaced{
 	margin-bottom: 20px;
 }
 input {
@@ -14,8 +14,15 @@ input {
 	overflow:visible;
 	overflow-y:visible;
 }
+tr:hover .table-row-controls button{
+	visibility:visible;
+}
+.table-row-controls button{
+	float:right;
+	visibility:hidden;
+}
 /*tabs------------------------------------------------------*/
-span.close-tab{
+.close-tab{
 	float:none;
 	position:relative;
 	top: 3px;
@@ -27,18 +34,12 @@ span.close-tab{
 .modal-footer .alert{
 	display: inline-block;
 	float: left;
-	margin-bottom: 0px;
+	margin-bottom: 0;
 	padding: 4px 35px 4px 14px;
 	display:none;
 }
 /*authors---------------*/
-tr:hover .author-controls button{
-	visibility:visible;
-}
-.author-controls button{
-	float:right;
-	visibility:hidden;
-}
+
 .button-add-author{
 	float:right;
 }
@@ -49,7 +50,7 @@ input.add-new-author{
 	min-width: 169px;
 }
 /*verses-----------------*/
-pre.chord-edit input{
+.chord-edit input{
 	position:relative;
 	left: -2px;
 	width:99%;
@@ -103,21 +104,7 @@ pre.chord-edit input{
 	clear: both;
 }
 /*verses---------------------------*/
-.verse-controls button{
-	float: right;
-	visibility: hidden;
-}
 .verse-controls .modal button{
 	visibility: visible
 }
-tr:hover .verse-controls button{
-	visibility: visible;
-}
 /*setlists--------------------------------------------------------------------------------------------------*/
-tr:hover .arrangement-controls button{
-	visibility:visible;
-}
-.arrangement-controls button{
-	float:right;
-	visibility:hidden;
-}
