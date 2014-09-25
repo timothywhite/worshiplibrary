@@ -4,7 +4,8 @@ define([
 	'hbs!template/tab',
 	//Modules
 	'module/song',
-	'module/arrangement'
+	'module/arrangement',
+	'module/setlist'
 ],
 function(app, tplTab){
 	app.module('Tab', function(Tab,app,Backbone,Marionette,$,_){
@@ -204,6 +205,14 @@ function(app, tplTab){
 			panesEl:'#arrangement-content',
 			tabsEl:'#arrangement-tabs',
 			paneView:app.Arrangement.Layout,
+			closeable: true
+		});
+		
+		app.setlistTabManager = new Tab.TabManager({
+			type: 'setlist',
+			panesEl: '#setlist-content',
+			tabsEl: '#setlist-tabs',
+			paneView: app.Setlist.CompositeView,
 			closeable: true
 		});
 
