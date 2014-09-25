@@ -6,20 +6,6 @@ define(['marionette', 'bootstrap'], function(){
 	});
 
 	app.addInitializer(function(){
-
-		// arrangement = new app.Arrangement.Model({id:1});
-		// arrangement.fetch({
-			// success:function(arr){
-				// app.arrangementTabManager.addTab({
-					// title: arr.get('description'),
-					// model: arr
-				// }).showTab({
-					// id:arr.get('id')
-				// });
-			// }
-		// });
-
-
 		app.vent.on({
 			'tab:show':function(model){
 				if (model instanceof app.Song.Model){
@@ -58,7 +44,7 @@ define(['marionette', 'bootstrap'], function(){
 					error: function(model, response, options){
 						app.vent.trigger('save:error',response.status);
 					}
-				})
+				});
 			},
 			'destroy':function(model){
 				model.destroy({
