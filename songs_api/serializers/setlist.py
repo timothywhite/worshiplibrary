@@ -6,7 +6,7 @@ class SetListArrangementSerializer(serializers.ModelSerializer):
 	notes = serializers.CharField(max_length=255, source='arrangement.notes', read_only=True)
 	class Meta:
 		model = SetListArrangement
-		fields = ('id', 'order', 'arrangement', 'description', 'notes')
+		fields = ('id', 'order', 'arrangement', 'description', 'notes', 'setlist')
 		
 class SetListSerializer(serializers.ModelSerializer):
 	setlist_arrangements = SetListArrangementSerializer(many=True,read_only=True)
