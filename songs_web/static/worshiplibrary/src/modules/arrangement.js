@@ -160,6 +160,7 @@ function(app, tplArrSongVerse, tplArrSong, tplArrSongLayout, tplArrVerse, tplArr
 				this.collection.comparator = function(model) {
 				  return model.get('order');
 				};
+				this.collection.sort();
 			},
 			removeVerse:function(childview){
 				this.collection.remove({id:childview.model.get('id')});

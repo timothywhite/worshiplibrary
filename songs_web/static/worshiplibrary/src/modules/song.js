@@ -200,17 +200,17 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 			tagName:'tr',
 			template: tplSongAuthor,
 			events:{
-				'click .button-down':'moveDown',
-				'click .button-up':'moveUp',
-				'click .button-remove':'remove'
+				'click .button-down':'moveAuthorDown',
+				'click .button-up':'moveAuthorUp',
+				'click .button-remove':'removeAuthor'
 			},
-			moveUp: function(){
+			moveAuthorUp: function(){
 				this.trigger('author:up');
 			},
-			moveDown: function(){
+			moveAuthorDown: function(){
 				this.trigger('author:down');
 			},
-			remove: function(){
+			removeAuthor: function(){
 				this.trigger('author:remove');
 			}
 		});
@@ -231,14 +231,12 @@ function(app, tplSong, tplSongArr, tplSongArrLayout, tplSongAuthor, tplSongAutho
 				this.collection.comparator = function(model) {
 				  return model.get('order');
 				};
+				this.collection.sort();
 			},
 			catchKeyup: function(e){
 				if(e.keyCode == 13){
 					this.addNewAuthor();
 				}
-			},
-			onBeforeRender:function(){
-				this.collection.sort();
 			},
 			onShow:function(){
 				this.setupModal();
