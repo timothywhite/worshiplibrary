@@ -7,7 +7,8 @@ define([
 	'hbs!template/arrangementsearchentry',
 	//Modules
 	'module/song',
-	'module/arrangement'
+	'module/arrangement',
+	'module/extensions'
 ],
 function(app, tplSongSidebar, tplSongSearchEntry, tplArrSidebar, tplArrSearchEntry){
 	app.module("Sidebar", function(Sidebar,app,Backbone,Marionette,$,_){

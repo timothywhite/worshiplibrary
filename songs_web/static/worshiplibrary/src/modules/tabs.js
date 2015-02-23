@@ -5,7 +5,8 @@ define([
 	//Modules
 	'module/song',
 	'module/arrangement',
-	'module/setlist'
+	'module/setlist',
+	'module/extensions'
 ],
 function(app, tplTab){
 	app.module('Tab', function(Tab,app,Backbone,Marionette,$,_){

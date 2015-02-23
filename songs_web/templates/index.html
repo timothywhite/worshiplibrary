@@ -7,13 +7,13 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<link rel="stylesheet" href="/static/worshiplibrary/assets/css/style.css" />
-	<link href="/static/worshiplibrary/assets/js/bootstrap/css/bootstrap.css" rel="stylesheet">
-	<link href="/static/worshiplibrary/assets/js/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+	<link rel="stylesheet" href="/static/worshiplibrary/_css/main.css" />
+	<link href="/static/worshiplibrary/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	<link href="/static/worshiplibrary/bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
 	{% if debug %}
-	<script data-main="static/worshiplibrary/main" src="/static/worshiplibrary/assets/js/require.js"></script>
+	<script data-main="static/worshiplibrary/main" src="/static/worshiplibrary/bower_components/requirejs/require.js"></script>
 	{% else %}
-	<script src="/static/worshiplibrary/build/app-build.js"></script>
+	<script src="/static/worshiplibrary/app.js"></script>
 	{% endif %}
 </head>
 <body>

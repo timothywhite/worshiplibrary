@@ -25,9 +25,5 @@ define(['app', 'handlebars'], function(app, Handlebars) {
 				return oldSync(method, model, options);
 			};
 		});
-		Handlebars.registerHelper('getAttribute', function(model, attribute) {
-			var value = model.get(attribute);
-			return new Handlebars.SafeString(value);
-		});
 	});
 });
