@@ -2,3 +2,8 @@
 *.pyc
 .c9
 .c9/*
+.*/
+_*/
+songs_web/static/worshiplibrary/app.js
+songs_web/static/worshiplibrary/bower_components/
+songs_web/static/worshiplibrary/node_modules/
