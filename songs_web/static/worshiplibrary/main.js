@@ -1,39 +1,51 @@
 require.config({
-	baseUrl: "/static/worshiplibrary/assets/js",
+	baseUrl: "/static/worshiplibrary/",
 	paths: {
-		'app': '../../src/application',
-		'module': '../../src/modules',
-		'text': 'text',
-		'template': '../../templates'
+		app: "src/application",
+		module: "src/modules",
+		text: "bower_components/text/text",
+		template: "templates",
+		backbone: "bower_components/backbone/backbone",
+		bootstrap: "bower_components/bootstrap/dist/js/bootstrap",
+		handlebars: "bower_components/handlebars/handlebars",
+		hbs: "bower_components/hbs/hbs",
+		jquery: "bower_components/jquery/dist/jquery",
+		marionette: "bower_components/marionette/lib/core/backbone.marionette",
+		"backbone.babysitter": "bower_components/backbone.babysitter/lib/backbone.babysitter",
+		"backbone.wreqr": "bower_components/backbone.wreqr/lib/backbone.wreqr",
+		underscore: "bower_components/underscore/underscore",
+		"bootstrap3-typeahead": "bower_components/bootstrap3-typeahead/bootstrap3-typeahead",
+		requirejs: "bower_components/requirejs/require"
 	},
 	shim: {
-		'jquery': {
-			exports: '$'
+		jquery: {
+			exports: "$"
 		},
-		'underscore': {
-			exports: '_'
+		underscore: {
+			exports: "_"
 		},
-		'backbone': {
-			deps: ['underscore', 'jquery'],
-			exports: 'Backbone',
+		backbone: {
+			deps: [
+				"underscore",
+				"jquery"
+			],
+			exports: "Backbone"
 		},
-		'bootstrap': {
-			deps: ['jquery']
+		bootstrap: {
+			deps: [
+				"jquery"
+			]
 		},
-		'handlebars': {
-			exports: 'Handlebars'
+		handlebars: {
+			exports: "Handlebars"
 		}
 	},
-	packages: [
-		{
-			name: 'hbs',
-			location: 'hbs',
-			main: 'hbs'
-		}
-	],
 	hbs: {
-		templateExtension: '.handlebars'
-	}
+		templateExtension: "handlebars"
+	},
+	packages: [
+
+	]
 });
 
 require([

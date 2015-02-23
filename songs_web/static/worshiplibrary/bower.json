@@ -1,0 +1,38 @@
+{
+  "name": "worshiplibrary",
+  "version": "0.0.1",
+  "homepage": "https://github.com/timothywhite/worshiplibrary",
+  "authors": [
+    "tim <timford88@gmail.com>"
+  ],
+  "main": "main.js",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "backbone": "~1.1.2",
+    "marionette": "~2.3.2",
+    "bootstrap": "~3.3.2",
+    "handlebars": "~3.0.0",
+    "text": "~2.0.14",
+    "underscore": "~1.8.1",
+    "backbone.wreqr": "~1.3.2",
+    "backbone.babysitter": "~0.1.6",
+    "hbs": "~0.11.2",
+    "bootstrap3-typeahead": "~3.1.0",
+    "requirejs": "~2.1.16"
+  },
+  "resolutions": {
+    "underscore": ">=1.5.0"
+  }
+}

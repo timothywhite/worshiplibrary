@@ -1,4 +1,4 @@
-define(['marionette', 'bootstrap'], function(){
+define(['marionette', 'bootstrap', 'bootstrap3-typeahead'], function(){
 	app = new Backbone.Marionette.Application();
 	app.addRegions({
 		songSidebar: '#song-sidebar',
